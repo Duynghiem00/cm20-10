@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gửi em 20/10</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Be+Vietnam+Pro:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ffc2d1;--card:#ffd6e0;--ink:#c9184a;--ink2:#590d22;--glass:rgba(255,255,255,.45);color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#ffc2d1;--card:#ffd6e0;--ink:#c9184a;--ink2:#590d22}}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{font-family:"Be Vietnam Pro",system-ui,sans-serif;background:var(--bg);color:var(--ink);overflow:hidden;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+body::before{content:"";position:fixed;inset:0;background:repeating-conic-gradient(#ffffff30 0 25%,transparent 0 50%) 0 0/60px 60px;z-index:-1}
+.screen{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:16px}
+.screen.on{display:flex}
+.panel{background:var(--glass);border:1px solid #fff9;border-radius:28px;box-shadow:0 20px 50px #c9184a30;backdrop-filter:blur(10px);padding:24px;width:min(100%,760px)}
+.script{font-family:"Dancing Script",cursive,serif}
+/* lock */
+#lock .panel{display:flex;gap:28px;align-items:center;justify-content:center;flex-wrap:wrap}
+.photo{width:min(260px,60vw);aspect-ratio:1;border-radius:18px;border:4px solid #fff;box-shadow:0 10px 24px #0002;background:linear-gradient(#7a8fa6,#f2a65a 60%,#3a3a45);display:grid;place-items:center;font-size:64px;overflow:hidden}
+.photo img,.ph img{width:100%;height:100%;object-fit:cover}
+.pad{text-align:center}
+.pad h2{font-size:26px;margin:8px 0 14px}
+.dots{display:flex;gap:14px;justify-content:center;margin-bottom:16px}
+.dots i{width:14px;height:14px;border-radius:50%;border:2px solid var(--ink)}
+.dots i.f{background:var(--ink)}
+.keys{display:grid;grid-template-columns:repeat(3,64px);gap:12px;justify-content:center}
+.keys button{height:64px;border-radius:50%;border:0;background:#ffffff70;color:var(--ink);font:700 20px inherit;cursor:pointer;transition:.15s}
+.keys button:active{transform:scale(.9);background:#fff}
+.shake{animation:sh .4s}
+@keyframes sh{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+/* hub */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;width:min(100%,700px)}
+.tile{aspect-ratio:1.5;border-radius:24px;border:1px solid #fff9;background:var(--card);color:var(--ink);font:700 16px inherit;display:flex;flex-direction:column;gap:8px;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 30px #c9184a25;transition:.2s}
+.tile:hover{transform:translateY(-4px)}
+.tile span{font-size:44px}
+.petal{position:fixed;top:-40px;pointer-events:none;z-index:5;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg)}}
+/* modal */
+.modal{position:fixed;inset:0;background:#590d2299;backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:16px;z-index:10}
+.modal.on{display:flex}
+.box{position:relative;background:#f4dfe5;border:6px solid #ffffff80;border-radius:26px;padding:22px;width:min(100%,420px);max-height:92vh;overflow:auto;animation:pop .3s}
+@keyframes pop{from{transform:scale(.85);opacity:0}}
+.x{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;border:0;background:#e63e6d;color:#fff;font-size:18px;cursor:pointer}
+/* music */
+.m-cover{width:170px;aspect-ratio:1;margin:8px auto;border-radius:20px;overflow:hidden;box-shadow:0 0 24px #e63e6d55;background:linear-gradient(#5b7db1,#f59e42);display:grid;place-items:center;font-size:56px}
+.m-title{text-align:center;font-weight:700;font-size:18px;margin:10px 0}
+.bar{display:flex;gap:8px;align-items:center;font-size:12px;font-weight:700}
+.bar input{flex:1;accent-color:var(--ink)}
+.ctrl{display:flex;justify-content:center;align-items:center;gap:22px;margin:12px 0}
+.ctrl button{border:0;background:none;color:#f06a8e;font-size:22px;cursor:pointer}
+.ctrl .pp{width:60px;height:60px;border-radius:50%;background:var(--ink);color:#fff;font-size:22px;box-shadow:0 6px 16px #c9184a66}
+.list{display:grid;gap:8px;max-height:130px;overflow:auto}
+.list button{display:flex;gap:10px;align-items:center;text-align:left;border:1px solid #e63e6d55;background:#ffffff80;border-radius:12px;padding:8px;font:700 13px inherit;color:var(--ink);cursor:pointer}
+.list button.on{background:#f7c0cf}
+.list em{width:38px;height:38px;border-radius:8px;background:linear-gradient(#5b7db1,#f59e42);flex:none}
+/* letter */
+.letter{font-family:"Dancing Script",cursive;font-size:22px;line-height:1.9;color:var(--ink2);border:1px dashed #c9184a55;border-radius:16px;padding:18px;white-space:pre-line}
+.letter b{display:block;text-align:right;color:var(--ink);margin-top:14px}
+/* gallery */
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:44px}
+.ph{aspect-ratio:3/4;border-radius:12px;border:3px solid #fff;box-shadow:0 6px 14px #0002;display:grid;place-items:center;font-size:30px;overflow:hidden}
+.gal-title{position:absolute;top:20px;left:22px;font-weight:700;font-size:14px;color:#e6007e}
+/* gift */
+#giftM .box{background:radial-gradient(#4a1f35,#1d0b17);color:#f3d9a6;text-align:center;width:min(100%,480px)}
+#giftM .script{font-size:26px;line-height:1.4}
+.bouquet{font-size:110px;filter:drop-shadow(0 0 30px #ffb3c7aa);margin:14px 0;animation:fl 3s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-8px)}}
+.star{position:absolute;color:#fff;animation:tw 2s infinite}
+@keyframes tw{50%{opacity:.2}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+
+<!-- Màn hình khóa -->
+<section class="screen on" id="lock">
+  <div class="panel">
+    <div style="display:flex;gap:28px;align-items:center;justify-content:center;flex-wrap:wrap">
+      <div class="photo" id="lockPhoto">🌅</div>
+      <div class="pad">
+        <div style="font-size:38px">❤️</div>
+        <h2 class="script">Mật khẩu là ngày sinh của em</h2>
+        <div class="dots" id="dots"><i></i><i></i><i></i><i></i></div>
+        <div class="keys" id="keys"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Màn hình chính -->
+<section class="screen" id="hub">
+  <div class="grid">
+    <button class="tile" data-open="musicM"><span>🎵</span>Music</button>
+    <button class="tile" data-open="letterM"><span>💌</span>Letter</button>
+    <button class="tile" data-open="galM"><span>🖼️</span>Image</button>
+    <button class="tile" data-open="giftM"><span>🎁</span>Gift</button>
+  </div>
+</section>
+
+<!-- Nhạc -->
+<div class="modal" id="musicM"><div class="box">
+  <button class="x" data-close>✕</button>
+  <p style="text-align:center;font-weight:700;color:#b5495f">🎶 MUSIC PLAYER</p>
+  <div class="m-cover" id="cover">🌇</div>
+  <iframe id="ytf" allow="autoplay; encrypted-media" title="nhac" style="position:absolute;width:2px;height:2px;opacity:0;border:0;pointer-events:none"></iframe>
+  <div class="m-title" id="mTitle"></div>
+  <div class="bar"><span id="cur">0:00</span><input type="range" id="seek" value="0" min="0" max="100"><span id="dur">0:00</span></div>
+  <div class="ctrl"><button id="prev">⏮</button><button class="pp" id="pp">▶</button><button id="next">⏭</button></div>
+  <div class="list" id="list"></div>
+</div></div>
+
+<!-- Thư -->
+<div class="modal" id="letterM"><div class="box">
+  <button class="x" data-close>✕</button>
+  <div class="letter" id="letterText"></div>
+</div></div>
+
+<!-- Ảnh -->
+<div class="modal" id="galM"><div class="box" style="width:min(100%,560px)">
+  <button class="x" data-close>✕</button>
+  <div class="gal-title">CHÚC MỪNG NGÀY PHỤ NỮ VIỆT NAM 20/10</div>
+  <div class="gal" id="gal"></div>
+</div></div>
+
+<!-- Quà -->
+<div class="modal" id="giftM"><div class="box">
+  <button class="x" data-close>✕</button>
+  <div class="script" id="gTop"></div>
+  <div class="bouquet" id="gVid">💐</div>
+  <div style="font-size:12px;letter-spacing:.1em;opacity:.8">BÓ HOA TƯƠI THẮM, ANH DÀNH RIÊNG</div>
+  <div class="script" style="font-size:24px">cho em</div>
+  <div style="font-size:13px;margin-top:6px" id="gFrom"></div>
+</div></div>
+
+<script>
+/* ====== TÙY CHỈNH TẠI ĐÂY ====== */
+const CFG={
+  password:"2010",                 // ngày sinh (4 số)
+  name:"Ngọc",
+  from:"Nguyễn Minh",
+  giftYoutube:"K0O-6NH-JmQ",      // ID video YouTube (để trống nếu không dùng)
+  giftVideo:"",                   // ví dụ: "hoa.mp4" (để trống thì hiện bó hoa emoji)
+  photos:[],                       // ví dụ: ["anh1.jpg","anh2.jpg"]
+  songs:[
+    {title:"Yêu Em Rất Nhiều - Hoàng Tôn",src:"",yt:"vDfkqjhtiCM",cover:""},
+    {title:"A Thousand Years - Christina Perri",src:"",cover:""},
+    {title:"Can't Take My Eyes Off You - Joseph",src:"",cover:""}
+  ],
+  letter:"Nhân dịp ngày Phụ Nữ Việt Nam 20/10,\n\nChúc em ngập tràn niềm vui và những điều ngọt ngào nhất. Dù là 20/10 hay 365 ngày trong năm, anh vẫn luôn mong em bình an và hạnh phúc. Chúc công chúa của anh luôn xinh đẹp, rạng rỡ.",
+  sign:"Mãi yêu anh nhé."
+};
+/* ================================ */
+const $=s=>document.querySelector(s);
+const show=id=>{document.querySelectorAll('.screen').forEach(e=>e.classList.remove('on'));$(id).classList.add('on')};
+
+// Bàn phím
+let buf="";
+const keys=$('#keys');
+["1","2","3","4","5","6","7","8","9","","0","⌫"].forEach(k=>{
+  const b=document.createElement('button');
+  if(!k){b.style.visibility='hidden'}else{b.textContent=k;b.onclick=()=>press(k)}
+  keys.appendChild(b);
+});
+function paint(){[...$('#dots').children].forEach((d,i)=>d.classList.toggle('f',i<buf.length))}
+function press(k){
+  if(k==="⌫")buf=buf.slice(0,-1);else if(buf.length<4)buf+=k;
+  paint();
+  if(buf.length===4){
+    if(buf===CFG.password){setTimeout(()=>{show('#hub');petals()},250)}
+    else{const p=$('.pad');p.classList.add('shake');setTimeout(()=>{p.classList.remove('shake');buf="";paint()},450)}
+  }
+}
+function petals(){
+  for(let i=0;i<22;i++){
+    const p=document.createElement('div');p.className='petal';
+    p.textContent=['🌸','🌼','🌷','💮'][i%4];
+    p.style.left=Math.random()*100+'vw';p.style.fontSize=(22+Math.random()*30)+'px';
+    p.style.animationDuration=(4+Math.random()*4)+'s';p.style.animationDelay=Math.random()*2+'s';
+    document.body.appendChild(p);setTimeout(()=>p.remove(),10000);
+  }
+}
+
+// Modal
+document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>{$('#'+b.dataset.open).classList.add('on');if(b.dataset.open==='letterM')typeLetter();if(b.dataset.open==='giftM'){const v=document.querySelector('#gVid video');if(v)v.play();const f=document.querySelector('#gVid iframe');if(f&&!f.src)f.src=f.dataset.src}});
+document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>{b.closest('.modal').classList.remove('on');if(b.closest('#musicM'))audio.pause(),ytOff(),setPP()});
+document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.querySelector('[data-close]').click()}));
+
+// Nội dung
+let tw;
+function typeLetter(){
+  clearInterval(tw);
+  const el=$('#letterText'),t1=document.createTextNode(''),sg=document.createElement('b');
+  el.textContent='';el.append(t1,sg);
+  let i=0,j=0;
+  tw=setInterval(()=>{
+    if(i<CFG.letter.length)t1.data+=CFG.letter[i++];
+    else if(j<CFG.sign.length)sg.textContent+=CFG.sign[j++];
+    else clearInterval(tw);
+  },60);
+}
+$('#gTop').innerHTML='Chúc mừng ngày 20/10<br>Chúc '+CFG.name+' luôn vui vẻ và hạnh phúc 💛';
+$('#gFrom').textContent='từ '+CFG.from;
+if(CFG.giftVideo){
+  const g=$('#gVid');g.className='';g.style.cssText='margin:14px 0';
+  g.innerHTML='<video src="'+CFG.giftVideo+'" autoplay loop muted playsinline style="width:100%;max-height:50vh;border-radius:16px;box-shadow:0 0 30px #ffb3c766"></video>';
+  const v=g.firstChild;v.onclick=()=>v.muted=!v.muted; // chạm vào video để bật/tắt tiếng
+}else if(CFG.giftYoutube){
+  const g=$('#gVid'),id=CFG.giftYoutube;g.className='';g.style.cssText='margin:14px 0';
+  g.innerHTML='<iframe data-src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&mute=1&loop=1&playlist='+id+'&playsinline=1" allow="autoplay; encrypted-media" allowfullscreen style="width:100%;aspect-ratio:16/9;border:0;border-radius:16px"></iframe><a href="https://www.youtube.com/watch?v='+id+'" target="_blank" rel="noopener" style="color:#f3d9a6;font-size:12px">Mở trên YouTube</a>';
+}
+const sun=['linear-gradient(#5b7db1,#f59e42)','linear-gradient(#f6a56b,#7a3b5e)','linear-gradient(#a3c4e8,#f2c28a)'];
+const gal=$('#gal');
+for(let i=0;i<9;i++){
+  const d=document.createElement('div');d.className='ph';
+  if(CFG.photos[i]){d.innerHTML='<img src="'+CFG.photos[i]+'" alt="">'}else{d.style.background=sun[i%3];d.textContent='💑'}
+  gal.appendChild(d);
+}
+if(CFG.photos[0])$('#lockPhoto').innerHTML='<img src="'+CFG.photos[0]+'" alt="">';
+
+// Nhạc
+const audio=new Audio();let idx=0;
+const list=$('#list');
+CFG.songs.forEach((s,i)=>{
+  const b=document.createElement('button');
+  b.innerHTML='<em></em><span>'+s.title+'</span>';b.onclick=()=>load(i,true);list.appendChild(b);
+});
+const fmt=t=>isFinite(t)?Math.floor(t/60)+':'+String(Math.floor(t%60)).padStart(2,'0'):'0:00';
+function load(i,play){
+  idx=(i+CFG.songs.length)%CFG.songs.length;const s=CFG.songs[idx];
+  audio.src=s.src||'';ytOff();$('#mTitle').textContent=s.title;
+  if(s.cover)$('#cover').innerHTML='<img src="'+s.cover+'" style="width:100%;height:100%;object-fit:cover" alt="">';
+  [...list.children].forEach((c,j)=>c.classList.toggle('on',j===idx));
+  if(play&&s.src)audio.play();if(play&&s.yt)ytPlay();setPP();
+}
+let ytOn=false;
+const ytf=()=>$('#ytf');
+function ytCmd(f){try{ytf().contentWindow.postMessage(JSON.stringify({event:'command',func:f,args:''}),'*')}catch(e){}}
+function ytPlay(){const f=ytf(),id=CFG.songs[idx].yt;ytOn=true;if(f.dataset.id!==id){f.dataset.id=id;f.src='https://www.youtube-nocookie.com/embed/'+id+'?enablejsapi=1&autoplay=1&loop=1&playlist='+id+'&playsinline=1'}else ytCmd('playVideo')}
+function ytOff(){const f=ytf();if(f&&f.dataset.id)ytCmd('pauseVideo');ytOn=false}
+ytf().onload=()=>{if(ytOn)setTimeout(()=>ytCmd('playVideo'),800)};
+function setPP(){const s=CFG.songs[idx];const on=s&&s.yt?ytOn:!audio.paused;$('#pp').textContent=on?'⏸':'▶'}
+$('#pp').onclick=()=>{const s=CFG.songs[idx];if(s.yt){if(ytOn){ytCmd('pauseVideo');ytOn=false}else ytPlay();setPP();return}if(!audio.src)return;audio.paused?audio.play():audio.pause();setPP()};
+$('#prev').onclick=()=>load(idx-1,true);
+$('#next').onclick=()=>load(idx+1,true);
+audio.onended=()=>load(idx+1,true);
+audio.ontimeupdate=()=>{$('#cur').textContent=fmt(audio.currentTime);$('#seek').value=audio.duration?audio.currentTime/audio.duration*100:0};
+audio.onloadedmetadata=()=>$('#dur').textContent=fmt(audio.duration);
+$('#seek').oninput=e=>{if(audio.duration)audio.currentTime=e.target.value/100*audio.duration};
+load(0,false);
+</script>
+</body>
+</html>
